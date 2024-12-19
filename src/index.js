@@ -1,4 +1,6 @@
 const { program } = require('commander')
+const path = require('path')
+const fs = require('fs')
 const { version } = require('../package.json')
 const { javascriptExtractor } = require('./javascript-extractor')
 const { sourcemapDetector } = require('./sourcemap-detector')
@@ -35,6 +37,7 @@ const main = async () => {
 
   if (!Object.keys(options).length) {
     program.help()
+    process.exit(1);
   }
 
   const urls = []
@@ -43,22 +46,38 @@ const main = async () => {
     urls.push(options.url)
   }
 
+  if (options.file) {
+    const filePath = path.resolve(options.file);
+    if (!fs.existsSync(filePath)) {
+      console.error('File not found:', filePath);
+      process.exit(1);
+    }
+
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    urls.push(...fileContent.split('\n').filter(line => line.trim()));
+  }
+
   if (!urls.length) {
     console.log('No targets provided!')
+    process.exit(1);
   }
 
   let hasFoundAny = false
 
   for (const url of urls) {
-    const scripts = await javascriptExtractor(url, options.header)
-    for (const script of scripts) {
-      const isEnabled = await sourcemapDetector(script, options.header)
-      if (isEnabled) {
-        hasFoundAny = true
-        const message = `[\x1b[32msourcemap-enabled\x1b[0m] ${url}`
-        console.log(message)
-        break
+    try {
+      const scripts = await javascriptExtractor(url, options.header)
+      for (const script of scripts) {
+        const isEnabled = await sourcemapDetector(script, options.header)
+        if (isEnabled) {
+          hasFoundAny = true
+          const message = `[\x1b[32msourcemap-enabled\x1b[0m] ${url}`
+          console.log(message)
+          break
+        }
       }
+    } catch (error) {
+      continue 
     }
   }
 

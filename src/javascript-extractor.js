@@ -2,8 +2,11 @@ const cheerio = require('cheerio')
 const url = require('url')
 
 const javascriptExtractor = async (targetUrl, headers) => {
+  const parsedUrl = targetUrl.startsWith('http')
+    ? targetUrl
+    : `https://${targetUrl}`
   const parsedHeaders = parseHeaders(headers)
-  const response = await fetch(targetUrl, {
+  const response = await fetch(parsedUrl, {
     headers: parsedHeaders
   })
   const html = await response.text()
@@ -12,7 +15,7 @@ const javascriptExtractor = async (targetUrl, headers) => {
   $('script').each((_, element) => {
     const src = $(element).attr('src')
     if (src && src.endsWith('.js')) {
-        const fullUrl = url.resolve(targetUrl, src)
+        const fullUrl = url.resolve(parsedUrl, src)
         scripts.push(fullUrl)
     }
   })
