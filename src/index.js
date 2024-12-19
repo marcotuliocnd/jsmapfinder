@@ -24,7 +24,7 @@ program
 program.on('--help', () => {
   console.log('\nExamples:')
   console.log('  $ sourcefinder -u https://example.com')
-  console.log('  $ sourcefinder -f urls.txt -o results.json')
+  console.log('  $ sourcefinder -f urls.txt -H "User-Agent: any-user-agent"')
 })
 
 
