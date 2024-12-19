@@ -1,6 +1,6 @@
 {
   "name": "jsmapfinder",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Javascript sourcemaps enumeration tool",
   "main": "src/index.js",
   "bin": "src/index.js",
