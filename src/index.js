@@ -67,6 +67,25 @@ const main = async () => {
 
   let hasFoundAny = false
 
+  await Promise.all(
+    urls.map(async url => {
+      try {
+        const scripts = await javascriptExtractor(url, options.header)
+        for (const script of scripts) {
+          const isEnabled = await sourcemapDetector(script, options.header)
+          if (isEnabled) {
+            hasFoundAny = true
+            const message = `[\x1b[32msourcemap-enabled\x1b[0m] ${url}`
+            console.log(message)
+            break
+          }
+        }
+      } catch (error) {
+        
+      }
+    })
+  )
+
   for (const url of urls) {
     try {
       const scripts = await javascriptExtractor(url, options.header)
