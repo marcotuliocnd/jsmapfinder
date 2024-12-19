@@ -8,17 +8,18 @@ const { javascriptExtractor } = require('./javascript-extractor')
 const { sourcemapDetector } = require('./sourcemap-detector')
 
 const asciiArt = `
-                                 __ _           _           
-   ___  ___  _   _ _ __ ___ ___ / _(_)_ __   __| | ___ _ __ 
-  / __|/ _ \\| | | | '__/ __/ _ \\ |_| | '_ \\ / _\` |/ _ \\ '__|
-  \\__ \\ (_) | |_| | | | (_|  __/  _| | | | | (_| |  __/ |   
-  |___/\\___/ \\__,_|_|  \\___\\___|_| |_|_| |_|\\__,_|\\___|_|   
+   _                            __ _           _           
+  (_)___ _ __ ___   __ _ _ __  / _(_)_ __   __| | ___ _ __ 
+  | / __| '_ \` _ \ / _\` | '_ \| |_| | '_ \ / _\` |/ _ \ '__|
+  | \__ \ | | | | | (_| | |_) |  _| | | | | (_| |  __/ |   
+ _/ |___/_| |_| |_|\__,_| .__/|_| |_|_| |_|\__,_|\___|_|   
+|__/                    |_|                               
 `
 
 console.log(asciiArt)
 
 program
-  .name('sourcefinder')
+  .name('jsmapfinder')
   .description('Command-line tool for checking if applications have JavaScript sourcemaps enabled.')
   .version(version)
   .option('-u, --url <url>', 'Specify the target URL to check for sourcemaps')
@@ -27,8 +28,8 @@ program
 
 program.on('--help', () => {
   console.log('\nExamples:')
-  console.log('  $ sourcefinder -u https://example.com')
-  console.log('  $ sourcefinder -f urls.txt -H "User-Agent: any-user-agent"')
+  console.log('  $ jsmapfinder -u https://example.com')
+  console.log('  $ jsmapfinder -f urls.txt -H "User-Agent: any-user-agent"')
 })
 
 

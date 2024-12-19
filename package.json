@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marcotuliocnd/sourcefinder.git"
+    "url": "git+https://github.com/marcotuliocnd/jsmapfinder.git"
   },
   "keywords": [
     "bugbounty",
@@ -22,9 +22,9 @@
   "author": "Marco",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/marcotuliocnd/sourcefinder/issues"
+    "url": "https://github.com/marcotuliocnd/jsmapfinder/issues"
   },
-  "homepage": "https://github.com/marcotuliocnd/sourcefinder#readme",
+  "homepage": "https://github.com/marcotuliocnd/jsmapfinder#readme",
   "dependencies": {
     "cheerio": "^1.0.0",
     "commander": "^12.1.0"
