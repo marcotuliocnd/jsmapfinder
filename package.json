@@ -1,0 +1,29 @@
+{
+  "name": "sourcefinder",
+  "version": "1.0.0",
+  "description": "Javascript sourcemaps enumeration tool",
+  "main": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcotuliocnd/sourcefinder.git"
+  },
+  "keywords": [
+    "bugbounty",
+    "bug",
+    "bounty",
+    "enumeration",
+    "tool",
+    "javascript"
+  ],
+  "author": "Marco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcotuliocnd/sourcefinder/issues"
+  },
+  "homepage": "https://github.com/marcotuliocnd/sourcefinder#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "commander": "^12.1.0"
+  }
+}
